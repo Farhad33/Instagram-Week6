@@ -7,11 +7,71 @@
 //
 
 import UIKit
+import Parse
 
-class PostImageViewController: UIViewController {
+class PostImageViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
+    
+    @IBOutlet weak var imageToPost: UIImageView!
+    @IBOutlet weak var message: UITextField!
+    
+    var newImage = UIImage()
+    var activityIndicator = UIActivityIndicatorView()
 
+    
+    @IBAction func chooseImage(sender: AnyObject) {
+        var image = UIImagePickerController()
+        image.delegate = self
+        image.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
+        image.allowsEditing = false
+        
+        self.presentViewController(image, animated: true, completion: nil)
+    }
+    
+    
+    func imagePickerController(picker: UIImagePickerController, didFinishPickingImage image: UIImage, editingInfo: [String : AnyObject]?) {
+        self.dismissViewControllerAnimated(true, completion: nil)
+        imageToPost.image = image
+        
+    }
+    
+
+    @IBAction func submit(sender: AnyObject) {
+        
+        waitingIndicator()
+        
+        var post = PFObject(className: "Post")
+        post["message"] = message.text
+        post["userId"] = PFUser.currentUser()!.objectId!
+        
+        newImage = resize(imageToPost.image!, newSize: CGSize(width: 100, height: 100))
+    
+        let imageData = UIImagePNGRepresentation(newImage)
+        let imageFile = PFFile(name: "image.png", data: imageData!)
+        
+        post["imagefile"] = imageFile
+        
+        post.saveInBackgroundWithBlock { (success, error) -> Void in
+            
+            self.activityIndicator.stopAnimating()
+            UIApplication.sharedApplication().endIgnoringInteractionEvents()
+            
+            if error == nil {
+                
+                self.displayError("Image Posted!", "Your image has been posted successfully")
+                
+                self.imageToPost.image = UIImage(named: "Blank_woman.png")
+                self.message.text = ""
+            }else {
+                self.displayError("Could not post image", "Please try again later")
+            }
+        }
+    }
+    
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        message.becomeFirstResponder()
 
         // Do any additional setup after loading the view.
     }
@@ -22,14 +82,41 @@ class PostImageViewController: UIViewController {
     }
     
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    func resize(image: UIImage, newSize: CGSize) -> UIImage {
+        let resizeImageView = UIImageView(frame: CGRectMake(0, 0, newSize.width, newSize.height))
+        resizeImageView.contentMode = UIViewContentMode.ScaleAspectFill
+        resizeImageView.image = image
+        
+        UIGraphicsBeginImageContext(resizeImageView.frame.size)
+        resizeImageView.layer.renderInContext(UIGraphicsGetCurrentContext()!)
+        let newImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        return newImage
+        
     }
-    */
-
+    
+    func waitingIndicator() {
+        activityIndicator = UIActivityIndicatorView(frame: self.view.frame)
+        activityIndicator.backgroundColor = UIColor(white: 1.0, alpha: 0.5)
+        activityIndicator.center = self.view.center
+        activityIndicator.hidesWhenStopped = true
+        activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.Gray
+        view.addSubview(activityIndicator)
+        activityIndicator.startAnimating()
+        UIApplication.sharedApplication().beginIgnoringInteractionEvents()
+    }
+    
+    
+    
+    func displayError(title: String,_ message: String) {
+        var alret = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.Alert)
+        alret.addAction(UIAlertAction(title: "Ok", style: .Default, handler: { (action) -> Void in
+            self.dismissViewControllerAnimated(true, completion: nil)
+        }))
+        
+        self.presentViewController(alret, animated: true, completion: nil)
+    }
+    
+  
+    
 }
