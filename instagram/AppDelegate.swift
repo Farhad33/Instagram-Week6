@@ -29,17 +29,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 configuration.server = "https://rocky-eyrie-73531.herokuapp.com/parse"
             })
         )
-        
-        PFUser.enableAutomaticUser()
-        
-        if application.applicationState != UIApplicationState.Background {
-            // Track an app open here if we launch with a push, unless
-            // "content_available" was used to trigger a background push (introduced in iOS 7).
-            // In that case, we skip tracking here to avoid double counting the app-open.
-            
-
-        }
-        
         return true
     }
     

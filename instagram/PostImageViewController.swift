@@ -4,7 +4,7 @@
 //
 //  Created by Majid Rahimi on 3/7/16.
 //  Copyright © 2016 Majid Rahimi. All rights reserved.
-//
+
 
 import UIKit
 import Parse
@@ -15,9 +15,9 @@ class PostImageViewController: UIViewController, UINavigationControllerDelegate,
     @IBOutlet weak var message: UITextField!
     
     var newImage = UIImage()
+    
     var activityIndicator = UIActivityIndicatorView()
 
-    
     @IBAction func chooseImage(sender: AnyObject) {
         var image = UIImagePickerController()
         image.delegate = self
@@ -34,23 +34,13 @@ class PostImageViewController: UIViewController, UINavigationControllerDelegate,
         
     }
     
-
     @IBAction func submit(sender: AnyObject) {
         
         waitingIndicator()
         
-        var post = PFObject(className: "Post")
-        post["message"] = message.text
-        post["userId"] = PFUser.currentUser()!.objectId!
-        
-        newImage = resize(imageToPost.image!, newSize: CGSize(width: 100, height: 100))
+        newImage = Post.resizeImage(imageToPost.image!, newSize: CGSize(width: 300, height: 500))
     
-        let imageData = UIImagePNGRepresentation(newImage)
-        let imageFile = PFFile(name: "image.png", data: imageData!)
-        
-        post["imagefile"] = imageFile
-        
-        post.saveInBackgroundWithBlock { (success, error) -> Void in
+        Post.postUserImage(newImage, withCaption: message.text) { (success: Bool, error: NSError?) -> Void in
             
             self.activityIndicator.stopAnimating()
             UIApplication.sharedApplication().endIgnoringInteractionEvents()
@@ -82,18 +72,6 @@ class PostImageViewController: UIViewController, UINavigationControllerDelegate,
     }
     
 
-    func resize(image: UIImage, newSize: CGSize) -> UIImage {
-        let resizeImageView = UIImageView(frame: CGRectMake(0, 0, newSize.width, newSize.height))
-        resizeImageView.contentMode = UIViewContentMode.ScaleAspectFill
-        resizeImageView.image = image
-        
-        UIGraphicsBeginImageContext(resizeImageView.frame.size)
-        resizeImageView.layer.renderInContext(UIGraphicsGetCurrentContext()!)
-        let newImage = UIGraphicsGetImageFromCurrentImageContext()
-        UIGraphicsEndImageContext()
-        return newImage
-        
-    }
     
     func waitingIndicator() {
         activityIndicator = UIActivityIndicatorView(frame: self.view.frame)

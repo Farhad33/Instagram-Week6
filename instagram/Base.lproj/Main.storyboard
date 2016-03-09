@@ -114,9 +114,9 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </tabBar>
                     <connections>
-                        <segue destination="lSW-EZ-dub" kind="relationship" relationship="viewControllers" id="M4P-kp-5S7"/>
-                        <segue destination="BXa-s5-eCG" kind="relationship" relationship="viewControllers" id="04J-dY-Hso"/>
-                        <segue destination="IjO-9M-jDx" kind="relationship" relationship="viewControllers" id="IcT-CD-wK2"/>
+                        <segue destination="qcz-jC-QjH" kind="relationship" relationship="viewControllers" id="ueP-4Z-2fP"/>
+                        <segue destination="BXa-s5-eCG" kind="relationship" relationship="viewControllers" id="w4A-Dx-dxr"/>
+                        <segue destination="IjO-9M-jDx" kind="relationship" relationship="viewControllers" id="4xn-Ha-kTT"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="slq-v8-EVB" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -124,58 +124,58 @@
             <point key="canvasLocation" x="516.5" y="328.5"/>
         </scene>
         <!--Home-->
-        <scene sceneID="VkO-bg-2Ed">
+        <scene sceneID="TQr-Ut-WaK">
             <objects>
-                <tableViewController id="lSW-EZ-dub" customClass="TableViewController" customModule="instagram" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="257" sectionHeaderHeight="28" sectionFooterHeight="28" id="FYr-01-wHB">
+                <viewController id="qcz-jC-QjH" customClass="TableViewController" customModule="instagram" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="clq-SA-9gd"/>
+                        <viewControllerLayoutGuide type="bottom" id="2Vj-xs-aad"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Pkv-k5-jXf">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="252" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="0Uz-XY-nKW">
+                                <rect key="frame" x="0.0" y="28" width="375" height="590"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="TableViewCell" rowHeight="252" id="g5Q-Ew-1S4" customClass="TableViewCell" customModule="instagram" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="252"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="g5Q-Ew-1S4" id="iTJ-Q7-iuT">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="251.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qes-JB-b5K">
+                                                    <rect key="frame" x="8" y="8" width="359" height="203"/>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Caption" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aOl-Zp-IVH">
+                                                    <rect key="frame" x="157" y="209" width="60" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="tableViewCellCaption" destination="aOl-Zp-IVH" id="J3K-xo-maK"/>
+                                            <outlet property="tableViewCellImage" destination="qes-JB-b5K" id="1Ch-RK-du3"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" rowHeight="257" id="QlS-Rq-jL1" customClass="Cell" customModule="instagram" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="375" height="257"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="QlS-Rq-jL1" id="nAr-Lu-BqK">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="256.5"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="q00-Ll-lgw">
-                                            <rect key="frame" x="45" y="13" width="285" height="188"/>
-                                        </imageView>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Message" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rC3-de-jS8">
-                                            <rect key="frame" x="45" y="227" width="285" height="21"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="username" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Uaq-y8-VFy">
-                                            <rect key="frame" x="45" y="206" width="76" height="21"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                    </subviews>
-                                </tableViewCellContentView>
-                                <connections>
-                                    <outlet property="message" destination="rC3-de-jS8" id="yM0-OX-91Q"/>
-                                    <outlet property="postedImage" destination="q00-Ll-lgw" id="vhe-15-0R3"/>
-                                    <outlet property="username" destination="Uaq-y8-VFy" id="p6y-2G-vnY"/>
-                                </connections>
-                            </tableViewCell>
-                        </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="lSW-EZ-dub" id="QbM-pD-9gp"/>
-                            <outlet property="delegate" destination="lSW-EZ-dub" id="Qou-xD-q9e"/>
-                        </connections>
-                    </tableView>
-                    <tabBarItem key="tabBarItem" title="Home" image="Icon-Small-3" id="2NK-Z3-mwT"/>
-                    <toolbarItems/>
-                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Home" image="Icon-Small-3" id="t7I-Cy-Irn"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="9Cq-gi-mro" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                    <connections>
+                        <outlet property="tableView" destination="0Uz-XY-nKW" id="lBq-Io-8yv"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="aSJ-Jj-39e" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1026.5" y="-196.5"/>
+            <point key="canvasLocation" x="1043.5" y="-45.5"/>
         </scene>
         <!--Profile-->
         <scene sceneID="hxV-2a-DDD">

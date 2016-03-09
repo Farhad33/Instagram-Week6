@@ -35,11 +35,11 @@ class LoginViewController: UIViewController {
     }
     
     
-//    override func viewDidAppear(animated: Bool) {
-//        if PFUser.currentUser() != nil {
-//            self.performSegueWithIdentifier("loginSegue", sender: self)
-//        }
-//    }
+    override func viewDidAppear(animated: Bool) {
+        if PFUser.currentUser() != nil {
+            self.performSegueWithIdentifier("loginSegue", sender: self)
+        }
+    }
     
     
     

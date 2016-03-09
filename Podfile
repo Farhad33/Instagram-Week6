@@ -5,4 +5,5 @@ use_frameworks!
 
 target 'instagram' do
   pod 'Parse'
+  pod “ParseUI”
 end

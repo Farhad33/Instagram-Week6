@@ -26,10 +26,8 @@ class ProfileViewController: UIViewController {
 
     
     @IBAction func onLogOut(sender: AnyObject) {
-        PFUser.logOutInBackgroundWithBlock { (result) -> Void in
-            self.performSegueWithIdentifier("logOutSegue", sender: nil)
-
-        }
+        PFUser.logOut()
+        self.performSegueWithIdentifier("logOutSegue", sender: nil)
     }
     
     
