@@ -35,13 +35,6 @@ class LoginViewController: UIViewController {
     }
     
     
-    override func viewDidAppear(animated: Bool) {
-        if PFUser.currentUser() != nil {
-            self.performSegueWithIdentifier("loginSegue", sender: self)
-        }
-    }
-    
-    
     
     func displayError(title: String,_ message: String) {
         var alret = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.Alert)
@@ -126,18 +119,5 @@ class LoginViewController: UIViewController {
     }
     
 
-
-    
-
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

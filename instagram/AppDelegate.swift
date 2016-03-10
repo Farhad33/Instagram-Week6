@@ -15,6 +15,7 @@ import Bolts
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+    let storyboard = UIStoryboard(name: "Main", bundle: nil)
 
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
@@ -29,6 +30,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 configuration.server = "https://rocky-eyrie-73531.herokuapp.com/parse"
             })
         )
+        if PFUser.currentUser() != nil {
+            let loggedinVC = storyboard.instantiateViewControllerWithIdentifier("LoggedInViewController")
+             window?.rootViewController = loggedinVC
+        }
         return true
     }
     

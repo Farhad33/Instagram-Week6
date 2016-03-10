@@ -55,6 +55,9 @@ class PostImageViewController: UIViewController, UINavigationControllerDelegate,
                 self.displayError("Could not post image", "Please try again later")
             }
         }
+        
+        self.performSegueWithIdentifier("loginSegue", sender: self)
+
     }
     
     
@@ -70,6 +73,12 @@ class PostImageViewController: UIViewController, UINavigationControllerDelegate,
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    
+    
+//    override func viewWillDisappear(animated: Bool) {
+//        self.performSegueWithIdentifier("LoggedInViewController", sender: self)
+//    }
     
 
     
